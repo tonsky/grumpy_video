@@ -8,3 +8,4 @@ jobs:
       - run: $REMOTE_COMMAND
       - store_artifacts:
           path: /tmp/output.mp4
+          destination: output.mp4
