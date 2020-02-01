@@ -5,7 +5,6 @@ jobs:
       - image: opencoconut/ffmpeg
       
     steps:
-      - checkout
-      - run: "echo 'Hello from ${SOURCE_URL:-???}'"
-      - run: "which curl"
-      - run: "which ffmpeg"
+      - run: |
+          echo ${REMOTE_COMMAND:-???}
+          ${REMOTE_COMMAND:--i http://files.coconut.co.s3.amazonaws.com/test.mp4 -f webm -c:v libvpx -c:a libvorbis - > test.webm}
