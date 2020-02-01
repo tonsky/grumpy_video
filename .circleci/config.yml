@@ -2,9 +2,10 @@ version: 2
 jobs:
   build:
     docker:
-      - image: opencoconut/ffmpeg
-      
+      - image: jrottenberg/ffmpeg:4.2-alpine
+    working_directory: /tmp
     steps:
-      - run: |
-          echo ${REMOTE_COMMAND:-???}
-          ${REMOTE_COMMAND:--i http://files.coconut.co.s3.amazonaws.com/test.mp4 -f webm -c:v libvpx -c:a libvorbis - > test.webm}
+      - run: $REMOTE_COMMAND
+      - store_artifacts:
+          path: /tmp/output.mp4
+          destination: converted
